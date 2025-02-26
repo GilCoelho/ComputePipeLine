@@ -1,0 +1,15 @@
+ #pragma once
+
+ #include <string_view>
+
+ namespace @INTERNAL_LOWER_PROJECT_NAME@::version {
+
+ /// @INTERNAL_UPPER_PROJECT_NAME@ creation timestamp
+ constexpr std::string_view VERSION_TIMESTAMP{"@INTERNAL_PROJECT_TIMESTAMP@"};
+
+ /// @INTERNAL_UPPER_PROJECT_NAME@ version
+ constexpr std::string_view VERSION{"@INTERNAL_PROJECT_VERSION@"};
+
+ /// @INTERNAL_UPPER_PROJECT_NAME@ git latest revision
+ constexpr std::string_view PACKAGE_GIT_VERSION{"@INTERNAL_PROJECT_PACKAGE_GIT_VERSION@"};
+ }
