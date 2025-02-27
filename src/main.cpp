@@ -7,6 +7,8 @@ int main() {
 
     ComputePipeline pipeline;
 
+    pipeline.init();
+
     pipeline.addAction(Actions::sumVals);
     pipeline.addAction(Actions::multiplyVals);
 
@@ -14,6 +16,8 @@ int main() {
 
     std::cout << "Input: 1 2 3 4 5" << std::endl;
     pipeline.executeActions(data);
+
+    pipeline.cleanup();
 
     return EXIT_SUCCESS;
 }
