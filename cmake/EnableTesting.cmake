@@ -36,3 +36,33 @@ function(set_up_gtesting)
         #find_package(GTest REQUIRED)
     endif()
 endfunction()
+
+#[=======================================================================[.rst:
+.. cmake:command:: add_unit_test
+
+  Function Create and build unitary tests.
+
+  .. code-block:: cmake
+
+    add_unit_test(
+        _proj_name <name>
+        _sources <sources>
+        _deps <dependencies>
+    )
+#]=======================================================================]
+function(add_unit_test _proj_name _sources _deps)
+    project(${_proj_name}_Tests)
+
+    message(STATUS ${_proj_name})
+    message(STATUS ${PROJECT_NAME})
+
+    add_executable(${PROJECT_NAME} ${_sources})
+
+    if(GTest_FOUND)
+        target_link_libraries(${PROJECT_NAME} PUBLIC GTest::GTest GTest::gtest_main CPL::${_proj_name} ${_deps})
+    else()
+        target_link_libraries(${PROJECT_NAME} PUBLIC gtest gtest_main CPL::${_proj_name} ${_deps})
+    endif()
+
+    add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
+endfunction()

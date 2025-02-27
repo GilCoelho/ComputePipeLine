@@ -24,19 +24,49 @@ loader::LoadTypes loader::parse_uri(const std::string& uri) {
 template<>
 loader::actionPointer loader::loadUri<loader::LoadTypes::File_Loader>(const std::string& uri) {
     std::cout << "Loading a File: " << uri << std::endl;
-    return actions::ActionFactory::instance().create(actions::ActionTypes::ImageDecode);
+
+    // Process the File
+
+    // Get data
+    actions::actionData data = {
+        actions::ActionTypes::ImageDecode,
+        "I'm an Image Decode Action",
+        actions::sumVals
+    };
+
+    return actions::ActionFactory::instance().create(actions::ActionTypes::ImageDecode, data);
 }
 
 template<>
 loader::actionPointer loader::loadUri<loader::LoadTypes::URL_Loader>(const std::string& uri) {
     std::cout << "Loading a URL: " << uri << std::endl;
-    return actions::ActionFactory::instance().create(actions::ActionTypes::Decompression);
+
+    // Process URL
+
+    // Get data
+    actions::actionData data = {
+        actions::ActionTypes::ImageDecode,
+        "I'm an Image Decode Action",
+        actions::sumVals
+    };
+
+    return actions::ActionFactory::instance().create(actions::ActionTypes::Decompression, data);
 }
 
 template<>
 loader::actionPointer loader::loadUri<loader::LoadTypes::Bundle_Loader>(const std::string& uri) {
     std::cout << "Loading a Bundle: " << uri << std::endl;
-    return actions::ActionFactory::instance().create(actions::ActionTypes::JSONDeserialize);
+
+    // Process the Bundle
+
+    // Get data
+    actions::actionData data = {
+        actions::ActionTypes::ImageDecode,
+        "I'm an Image Decode Action",
+        actions::sumVals
+    };
+
+    return actions::ActionFactory::instance().create(actions::ActionTypes::JSONDeserialize, data);
 }
 
 loader::loadUriFunc loader::buildUriObjs(const std::string& uri) {

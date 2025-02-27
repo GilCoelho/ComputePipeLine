@@ -6,7 +6,9 @@
 namespace actions {
     class JSONAction : public IAction {
         public:
-            IAction& execute();
+            JSONAction(const actions::actionData& data);
+            template <typename T>
+            IAction& execute(T data);
 
         private:
             ActionTypes type = ActionTypes::JSONDeserialize;

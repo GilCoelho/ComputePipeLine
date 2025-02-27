@@ -6,7 +6,9 @@
 namespace actions {
     class ImageAction : public IAction {
         public:
-            IAction& execute();
+            ImageAction(const actions::actionData& data);
+            template <typename T>
+            IAction& execute(T data);
 
         private:
             ActionTypes type = ActionTypes::ImageDecode;

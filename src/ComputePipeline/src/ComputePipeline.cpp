@@ -1,20 +1,20 @@
 #include "ComputePipeline.h"
 #include <loader.h>
 
-bool ComputePipeline::init(const std::string& uri) {
+void ComputePipeline::init(const std::string& uri) {
     auto builder = loader::buildUriObjs(uri);
-    auto action = builder(uri);
-    action->execute();
-    return true;
+    auto new_action = builder(uri);
+
+    this->addAction(new_action);
 }
 
-void ComputePipeline::addAction(actions::Action action) {
-    actions.push_back(action);
+void ComputePipeline::addAction(std::shared_ptr<actions::IAction> new_action) {
+    actions_to_execute.push_back(new_action);
 }
 
 void ComputePipeline::executeActions(std::vector<int>& data) {
-    for (auto& action : actions) {
-        action(data);
+    for (auto& action_to_exe : actions_to_execute) {
+        action_to_exe->execute(data);
     }
 }
 

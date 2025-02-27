@@ -10,11 +10,6 @@ int main() {
     ComputePipeline pipeline;
 
     pipeline.init(path);
-    // auto t_action = actions::IAction();
-    // t_action.load(path).execute();
-
-    pipeline.addAction(actions::sumVals);
-    pipeline.addAction(actions::multiplyVals);
 
     std::vector<int> data = {1, 2, 3, 4, 5};
 

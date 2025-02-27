@@ -3,8 +3,9 @@
 
 #include <Actions.h>
 
-actions::IAction& actions::IAction::execute() {
-    std::cout << this->data << std::endl;
+template <typename T>
+actions::IAction& actions::IAction::execute(T data) {
+    std::cout << this->data_txt << std::endl;
     return *this;
 }
 

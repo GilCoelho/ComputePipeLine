@@ -5,25 +5,34 @@
 #include <functional>
 
 namespace actions {
-    // ActionTypes enum class
+    using ActionFunction = std::function<void(std::vector<int>&)>;
+
     enum class ActionTypes
     {
         ImageDecode,
         Decompression,
         JSONDeserialize,
     };
-    // ----------------------------
+
+    struct actionData {
+        ActionTypes type;
+        std::string data;
+        ActionFunction func_action;
+    };
 
     class IAction {
         public:
-            virtual IAction& execute() = 0;
+            IAction(const actionData& data) {};
+
+            template <typename T>
+            IAction& execute(T data);
 
         protected:
-            ActionTypes type;
-            std::string data = "I'm an IAction";
+            ActionTypes action_type;
+            std::string data_txt = "I'm an IAction";
+            ActionFunction custom_action;
     };
 
-    using Action = std::function<void(std::vector<int>&)>;
 
     void sumVals(std::vector<int>& data);
     void multiplyVals(std::vector<int>& data);

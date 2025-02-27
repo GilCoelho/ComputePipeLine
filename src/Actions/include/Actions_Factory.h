@@ -15,7 +15,7 @@ namespace actions {
 
     class ActionFactory {
         public:
-            using ActionCreator = std::function<std::unique_ptr<actions::IAction>()>;
+            using ActionCreator = std::function<std::unique_ptr<actions::IAction>(const struct actionData& data)>;
 
             static ActionFactory& instance() {
                 static ActionFactory factory;
@@ -23,7 +23,7 @@ namespace actions {
             }
 
             void registerAction(actions::ActionTypes actionType, ActionCreator creator);
-            std::unique_ptr<IAction> create(actions::ActionTypes actionType);
+            std::unique_ptr<IAction> create(actions::ActionTypes actionType, struct actionData data);
 
         private:
             std::unordered_map<actions::ActionTypes, ActionCreator> creators;
@@ -31,9 +31,19 @@ namespace actions {
             // Private constructor for singleton pattern
             ActionFactory() {
                 // Register available actions
-                registerAction(actions::ActionTypes::ImageDecode, []() { return std::make_unique<ImageAction>(); });
-                registerAction(actions::ActionTypes::Decompression, []() { return std::make_unique<DecompressAction>(); });
-                registerAction(actions::ActionTypes::JSONDeserialize, []() { return std::make_unique<JSONAction>(); });
+                registerAction(
+                    actions::ActionTypes::ImageDecode,
+                    [](const struct actionData& data) { return std::make_unique<ImageAction>(data);}
+                );
+
+                registerAction(
+                    actions::ActionTypes::Decompression,
+                    [](const struct actionData& data) { return std::make_unique<DecompressAction>(data); }
+                );
+
+                registerAction(actions::ActionTypes::JSONDeserialize,
+                    [](const struct actionData& data) { return std::make_unique<JSONAction>(data); }
+                );
             }
         };
 }

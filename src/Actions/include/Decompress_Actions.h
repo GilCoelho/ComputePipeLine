@@ -6,7 +6,9 @@
 namespace actions {
     class DecompressAction : public IAction {
         public:
-            IAction& execute();
+            DecompressAction(const actions::actionData& data);
+            template <typename T>
+            IAction& execute(T data);
 
         private:
             ActionTypes type = ActionTypes::Decompression;

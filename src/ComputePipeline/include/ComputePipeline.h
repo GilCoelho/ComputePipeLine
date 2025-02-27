@@ -1,21 +1,22 @@
 #ifndef COMPUTE_PIPELINE_H
 #define COMPUTE_PIPELINE_H
 
+#include <memory>
 #include <vector>
 
 #include <Actions.h>
 
 class ComputePipeline {
 public:
-    bool init(const std::string& uri);
+    void init(const std::string& uri);
 
-    void addAction(actions::Action action);
+    void addAction(std::shared_ptr<actions::IAction> new_action);
     void executeActions(std::vector<int>& data);
 
     void cleanup();
 
 private:
-    std::vector<actions::Action> actions;
+    std::vector<std::shared_ptr<actions::IAction>> actions_to_execute;
 };
 
 #endif

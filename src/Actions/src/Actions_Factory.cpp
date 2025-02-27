@@ -4,10 +4,10 @@ void actions::ActionFactory::registerAction(actions::ActionTypes actionType, Act
     creators[actionType] = std::move(creator);
 }
 
-std::unique_ptr<actions::IAction> actions::ActionFactory::create(actions::ActionTypes actionType) {
+std::unique_ptr<actions::IAction> actions::ActionFactory::create(actions::ActionTypes actionType, struct actions::actionData data) {
     auto it = creators.find(actionType);
     if (it != creators.end()) {
-        return it->second();
+        return it->second(data);
     }
 
     throw std::runtime_error("Unknown action type");
