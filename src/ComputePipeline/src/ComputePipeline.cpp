@@ -1,6 +1,10 @@
 #include "ComputePipeline.h"
+#include <loader.h>
 
-bool ComputePipeline::init() {
+bool ComputePipeline::init(const std::string& uri) {
+    auto builder = loader::buildUriObjs(uri);
+    auto action = builder(uri);
+    action->execute();
     return true;
 }
 

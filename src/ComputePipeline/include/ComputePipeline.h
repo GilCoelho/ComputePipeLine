@@ -7,7 +7,7 @@
 
 class ComputePipeline {
 public:
-    bool init();
+    bool init(const std::string& uri);
 
     void addAction(actions::Action action);
     void executeActions(std::vector<int>& data);

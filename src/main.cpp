@@ -5,9 +5,13 @@
 int main() {
     std::cout << "Hello, I'm a CompilePipeline main..." << std::endl;
 
+    std::string path = "http://path/to/file";
+
     ComputePipeline pipeline;
 
-    pipeline.init();
+    pipeline.init(path);
+    // auto t_action = actions::IAction();
+    // t_action.load(path).execute();
 
     pipeline.addAction(actions::sumVals);
     pipeline.addAction(actions::multiplyVals);
@@ -18,10 +22,6 @@ int main() {
     pipeline.executeActions(data);
 
     pipeline.cleanup();
-
-    std::string path = "file://path/to/file";
-    auto t_action = actions::IAction();
-    t_action.load(path).execute();
 
     return EXIT_SUCCESS;
 }

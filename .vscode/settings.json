@@ -45,5 +45,10 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "map": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "endfunction",
+        "googletest",
+        "gtesting"
+    ]
 }
