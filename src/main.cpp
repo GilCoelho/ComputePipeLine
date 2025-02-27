@@ -9,8 +9,8 @@ int main() {
 
     pipeline.init();
 
-    pipeline.addAction(Actions::sumVals);
-    pipeline.addAction(Actions::multiplyVals);
+    pipeline.addAction(actions::sumVals);
+    pipeline.addAction(actions::multiplyVals);
 
     std::vector<int> data = {1, 2, 3, 4, 5};
 
@@ -18,6 +18,10 @@ int main() {
     pipeline.executeActions(data);
 
     pipeline.cleanup();
+
+    std::string path = "file://path/to/file";
+    auto t_action = actions::IAction();
+    t_action.load(path).execute();
 
     return EXIT_SUCCESS;
 }

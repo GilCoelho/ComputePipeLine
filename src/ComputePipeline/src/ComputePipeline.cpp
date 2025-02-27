@@ -4,7 +4,7 @@ bool ComputePipeline::init() {
     return true;
 }
 
-void ComputePipeline::addAction(Actions::Action action) {
+void ComputePipeline::addAction(actions::Action action) {
     actions.push_back(action);
 }
 

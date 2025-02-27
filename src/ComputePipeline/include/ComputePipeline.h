@@ -9,13 +9,13 @@ class ComputePipeline {
 public:
     bool init();
 
-    void addAction(Actions::Action action);
+    void addAction(actions::Action action);
     void executeActions(std::vector<int>& data);
 
     void cleanup();
 
 private:
-    std::vector<Actions::Action> actions;
+    std::vector<actions::Action> actions;
 };
 
 #endif
