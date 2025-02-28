@@ -14,7 +14,10 @@ void ComputePipeline::addAction(std::shared_ptr<actions::IAction> new_action) {
 
 void ComputePipeline::executeActions(std::vector<int>& data) {
     for (auto& action_to_exe : actions_to_execute) {
+
+        action_to_exe->p();
         action_to_exe->execute(data);
+
     }
 }
 

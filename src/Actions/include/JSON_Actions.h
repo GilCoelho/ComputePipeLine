@@ -7,8 +7,13 @@ namespace actions {
     class JSONAction : public IAction {
         public:
             JSONAction(const actions::actionData& data);
-            template <typename T>
-            IAction& execute(T data);
+            ~JSONAction() = default;
+
+            // template <typename T>
+            // IAction& execute(T data);
+            IAction& execute(std::vector<int>& data);
+
+            void p() override {std::cout << data << std::endl;}
 
         private:
             ActionTypes type = ActionTypes::JSONDeserialize;

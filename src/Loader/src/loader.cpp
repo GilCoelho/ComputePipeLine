@@ -27,11 +27,11 @@ loader::actionPointer loader::loadUri<loader::LoadTypes::File_Loader>(const std:
 
     // Process the File
 
-    // Get data
+    // Get data -> this step can be generated in a separate function
     actions::actionData data = {
         actions::ActionTypes::ImageDecode,
-        "I'm an Image Decode Action",
-        actions::sumVals
+        "I'm an custom Action",
+        {actions::sumVals<int>, actions::sumVals<int>}
     };
 
     return actions::ActionFactory::instance().create(actions::ActionTypes::ImageDecode, data);
@@ -43,11 +43,11 @@ loader::actionPointer loader::loadUri<loader::LoadTypes::URL_Loader>(const std::
 
     // Process URL
 
-    // Get data
+    // Get data -> this step can be generated in a separate function
     actions::actionData data = {
         actions::ActionTypes::ImageDecode,
-        "I'm an Image Decode Action",
-        actions::sumVals
+        "I'm an custom Action",
+        {actions::multiplyVals<int>, actions::sumVals<int>}
     };
 
     return actions::ActionFactory::instance().create(actions::ActionTypes::Decompression, data);
@@ -59,11 +59,11 @@ loader::actionPointer loader::loadUri<loader::LoadTypes::Bundle_Loader>(const st
 
     // Process the Bundle
 
-    // Get data
+    // Get data -> this step can be generated in a separate function
     actions::actionData data = {
         actions::ActionTypes::ImageDecode,
-        "I'm an Image Decode Action",
-        actions::sumVals
+        "I'm an custom Action",
+        {actions::sumVals<int>, actions::sumVals<int>}
     };
 
     return actions::ActionFactory::instance().create(actions::ActionTypes::JSONDeserialize, data);

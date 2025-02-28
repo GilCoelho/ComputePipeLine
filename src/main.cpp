@@ -13,7 +13,6 @@ int main() {
 
     std::vector<int> data = {1, 2, 3, 4, 5};
 
-    std::cout << "Input: 1 2 3 4 5" << std::endl;
     pipeline.executeActions(data);
 
     pipeline.cleanup();
