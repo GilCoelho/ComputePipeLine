@@ -63,6 +63,7 @@
         "variant": "cpp"
     },
     "cSpell.words": [
+        "Doxyfile",
         "endfunction",
         "googletest",
         "gtesting"

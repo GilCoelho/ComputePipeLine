@@ -15,7 +15,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 option(WITH_TESTS "Build Unit tests" OFF)
 option(WITH_DOCS "Create Documentation generation target" OFF)
 
+include(EnableDoxygen)
 include(EnableTesting)
+include(EnableVersioning)
+
+set_version(${PROJECT_NAME} 0.1.0 dev)
+
 set(ENABLE_TESTS OFF)
 if(WITH_TESTS OR WITH_COVERAGE OR WITH_MEMCHECK)
     set(ENABLE_TESTS ON)
@@ -23,11 +28,9 @@ if(WITH_TESTS OR WITH_COVERAGE OR WITH_MEMCHECK)
     set_up_gtesting()
 endif()
 
-include(EnableVersioning)
-set_version(${PROJECT_NAME} 0.1.0 dev)
 
 if(NOT WITH_DOCS STREQUAL "OFF")
-    add_subdirectory(doc)
+    set_up_doxygen()
 else()
     add_subdirectory(src)
 
